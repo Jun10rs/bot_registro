@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Registros</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h1 class="mb-4">📋 Dashboard de Registros</h1>
+
+    <!-- Formulário de Filtro -->
+    <form method="GET" class="mb-3">
+        <div class="row">
+            <div class="col-md-3">
+                <input type="text" name="nome" class="form-control" placeholder="Filtrar por Nome">
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="telefone" class="form-control" placeholder="Filtrar por Telefone">
+            </div>
+            <div class="col-md-3">
+                <input type="date" name="data" class="form-control">
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">🔍 Filtrar</button>
+            </div>
+        </div>
+    </form>
+
+    <!-- Tabela de Registros -->
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Motivo</th>
+                <th>Usuário</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for registro in registros %}
+            <tr>
+                <td>{{ registro.nome }}</td>
+                <td>{{ registro.telefone }}</td>
+                <td>{{ registro.motivo }}</td>
+                <td>{{ registro.usuario_mencao }}</td>
+                <td>{{ registro.data_registro }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
