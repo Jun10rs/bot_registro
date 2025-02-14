@@ -1,11 +1,42 @@
 [
-    
     {
         "usuario_id": 1148834291745312799,
         "nome": "Junior",
         "telefone": "47988140666",
-        "motivo": "vai bitico",
+        "motivo": "conhecer airdrops",
+        "usuario_mencao": "<@1048834291745312799>",
+        "data_registro": "10/02/2025"
+    },
+    {
+        "usuario_id": 1148834291745312799,
+        "nome": "juliana",
+        "telefone": "47988140666",
+        "motivo": "qualquer coisa",
         "usuario_mencao": "<@1148834291745312799>",
-        "data_registro": "2025-02-13 20:09:34.412000+00:00"
+        "data_registro": "11/02/2025"
+    },
+    {
+        "usuario_id": 1148834291745312799,
+        "nome": "Dalmo",
+        "telefone": "47998750666",
+        "motivo": "qualquer coisa",
+        "usuario_mencao": "<@1248834291745312799>",
+        "data_registro": "22/02/2025"
+    },
+    {
+        "usuario_id": 1148834291745312799,
+        "nome": "Abner",
+        "telefone": "47936540666",
+        "motivo": "qualquer coisa",
+        "usuario_mencao": "<@1348834291745312799>",
+        "data_registro": "18/02/2025"
+    },
+    {
+        "usuario_id": 1148834291745312799,
+        "nome": "Marcelo",
+        "telefone": "47988143654",
+        "motivo": "qualquer coisa",
+        "usuario_mencao": "<@1448834291745312799>",
+        "data_registro": "05/02/2025"
     }
 ]

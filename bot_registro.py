@@ -93,7 +93,7 @@ class RegistroModal(discord.ui.Modal, title="Registre-se no Servidor"):
             "telefone": telefone,
             "motivo": self.motivo.value,
             "usuario_mencao": member.mention,
-            "data_registro": str(interaction.created_at)
+            "data_registro": interaction.created_at.strftime("%d/%m/%Y")
         }
         
         salvar_registro(novo_registro)
@@ -117,41 +117,14 @@ class BotaoRegistro(discord.ui.View):
     async def abrir_modal(self, interaction: discord.Interaction, button: discord.ui.Button):
         await interaction.response.send_modal(RegistroModal())
 
+@tree.command(name="dashboard", description="Acesse a dashboard do sistema")
+async def dashboard(interaction: discord.Interaction):
+    dashboard_url = "http://127.0.0.1:5000"  # URL local
+    await interaction.response.send_message(f"🖥️ Acesse os registros aqui: [Clique aqui]({dashboard_url})", ephemeral=True)
+
 @bot.event
-async def on_raw_reaction_add(payload):
-    if payload.user_id == bot.user.id:
-        return
-    
-    guild = bot.get_guild(GUILD_ID)
-    if not guild:
-        return
-    
-    member = guild.get_member(payload.user_id)
-    if not member:
-        return
-    
-    if await check_reactions(member):
-        if member.id not in usuarios_completos:
-            usuarios_completos[member.id] = True
-            
-            # Criar canal de registro para o membro
-            category = discord.utils.get(guild.categories, id=CATEGORY_ID)
-            overwrites = {
-                guild.default_role: discord.PermissionOverwrite(read_messages=False),
-                bot.user: discord.PermissionOverwrite(read_messages=True, send_messages=True),
-                member: discord.PermissionOverwrite(read_messages=True, send_messages=True)
-            }
-            canal_registro = await guild.create_text_channel(
-                name=f"registro-{member.name}", category=category, overwrites=overwrites
-            )
-            
-            # Enviar mensagem de registro com botão
-            embed = discord.Embed(
-                title="📋 Formulário de Registro",
-                description=f"Olá {member.mention}, clique no botão abaixo para se registrar!",
-                color=discord.Color.blue()
-            )
-            view = BotaoRegistro()
-            await canal_registro.send(embed=embed, view=view)
+async def on_ready():
+    await tree.sync()
+    print(f"✅ Bot conectado como {bot.user}")
 
 bot.run(TOKEN)
